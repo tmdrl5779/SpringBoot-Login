@@ -4,13 +4,13 @@ let index = {
             this.save();
         });
 
+        /*전통 로그인
         $("#btn-login").on("click", ()=>{
             this.login();
-        });
+        });*/
     },
 
     save: function (){
-        //alert("save호출");
         let data ={
             username:$("#username").val(), //id 로 변수에 바인딩
             password:$("#password").val()
@@ -18,7 +18,7 @@ let index = {
 
         $.ajax({
             type:"POST",
-            url:"/api/user",
+            url:"/auth/joinProc",
             data:JSON.stringify(data), //object -> json
             contentType:"application/json; charset=utf-8",
             dataType:"json"
@@ -26,14 +26,14 @@ let index = {
             alert("회원가입 완료");
             location.href = "/";
         }).fail(function (error){
-            alert("이미존재하거나 적합한 아이디가 아닙니다." +
+            alert(JSON.stringify(data) +
                 "회원가입 실패");
         }); //ajax통신으로 데이터를 json으로 변경 후 insert
 
     },
 
+    /*전통 로그인
     login: function (){
-        //alert("save호출");
         let data ={
             username:$("#username").val(), //id 로 변수에 바인딩
             password:$("#password").val()
@@ -52,7 +52,7 @@ let index = {
             alert("로그인 실패");
         }); //ajax통신으로 데이터를 json으로 변경 후 insert
 
-    }
+    }*/
 
 }
 
