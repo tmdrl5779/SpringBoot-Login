@@ -16,8 +16,8 @@ public class UserTest {
     @Test
     public void 회원가입(){
         User user = new User();
-        user.setUserId("test1234");
-        user.setUserPassword("asdfasdf");
+        user.setUsername("test1234");
+        user.setPassword("asdfasdf");
         userRepository.save(user);
     }
 }

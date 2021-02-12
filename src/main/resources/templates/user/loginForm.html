@@ -1,18 +1,16 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
-<head>
-    <title>Bootstrap Example</title>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-</head>
+
+<th:block th:include="/layout/head :: commonHead"></th:block>
+
+
 <body>
 <div class="Header">
     <th:block th:include="/layout/header :: commonHeader"></th:block>
 </div>
 
 <div class="container">
-    <form action="/action_page.php">
+    <form>
         <div class="form-group">
             <label for="username">Username:</label>
             <input type="text" class="form-control" placeholder="Enter username" id="username">
@@ -21,11 +19,12 @@
             <label for="password">Password:</label>
             <input type="password" class="form-control" placeholder="Enter password" id="password">
         </div>
-        <button type="submit" class="btn btn-primary">로그인</button>
     </form>
+
+    <button id="btn-login" class="btn btn-primary">로그인</button>
 </div>
 
-
+<script src="/js/user.js"></script>
 <div class="Footer">
     <th:block th:include="/layout/footer :: commonFooter"></th:block>
 </div>
