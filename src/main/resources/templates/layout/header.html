@@ -3,13 +3,17 @@
 
 <th:block th:fragment="commonHeader">
 
+
+
+
     <nav class="navbar navbar-expand-md bg-dark navbar-dark">
         <a class="navbar-brand" href="/">Main</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
             <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="collapsibleNavbar">
-            <ul class="navbar-nav">
+
+            <ul class="navbar-nav" th:if="${session.principal == null}" >
                 <li class="nav-item">
                     <a class="nav-link" href="/user/loginForm">로그인</a>
                 </li>
@@ -17,6 +21,15 @@
                     <a class="nav-link" href="/user/joinForm">회원가입</a>
                 </li>
             </ul>
+            <ul class="navbar-nav" th:unless="${session.principal == null}" >
+                <li class="nav-item">
+                    <span class="nav-link" th:text="${session.principal.getUsername()} + '님 환영합니다.' "></span>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/user/logout">로그아웃</a>
+                </li>
+            </ul>
+
         </div>
     </nav>
     <br>

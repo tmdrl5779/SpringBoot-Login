@@ -10,15 +10,18 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.servlet.http.HttpSession;
+import java.util.Optional;
 
 @RestController
 public class UserApiController {
 
     UserService userService;
+    HttpSession httpSession; //세션은 빈에 이미 등록되어있음
 
     @Autowired
-    public UserApiController(UserService userService) {
+    public UserApiController(UserService userService, HttpSession httpSession) {
         this.userService = userService;
+        this.httpSession = httpSession;
     }
 
     @PostMapping("api/user")
@@ -28,14 +31,16 @@ public class UserApiController {
         return new ResponseDto<Integer>(HttpStatus.OK.value(), 1);
     }
     @PostMapping("api/user/login")
-    public ResponseDto<Integer> find(@RequestBody User user, HttpSession session){
+    public ResponseDto<Integer> find(@RequestBody User user){
         System.out.println("UserApiController : login호출");
         User principal = userService.login(user); //principal(접근 주체)
 
-        if(principal != null){
-            session.setAttribute("principal", principal);
-        }
+        Optional<User> optPrincipal = Optional.of(principal);
+
+        httpSession.setAttribute("principal", optPrincipal.get());
         return new ResponseDto<Integer>(HttpStatus.OK.value(), 1);
+
+
     }
 
 }
