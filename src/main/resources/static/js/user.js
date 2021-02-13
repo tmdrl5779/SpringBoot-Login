@@ -26,8 +26,7 @@ let index = {
             alert("회원가입 완료");
             location.href = "/";
         }).fail(function (error){
-            alert(JSON.stringify(data) +
-                "회원가입 실패");
+            alert("회원가입 실패");
         }); //ajax통신으로 데이터를 json으로 변경 후 insert
 
     },

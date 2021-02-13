@@ -1,6 +1,7 @@
 package Social.Sociallogin.config.auth;
 
 import Social.Sociallogin.domain.User;
+import lombok.Getter;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
@@ -10,6 +11,7 @@ import java.util.Collection;
 //로그인했을때 정보들
 //스프링 시큐리티가 로그인 요청을 가로채서 로그인을 진행하고 완료가 되면 UserDetails타입의 오브젝트를
 //스프링 시큐리티의 고유한 세션저장소에 저장을 해준다. PrincipalDetail
+@Getter
 public class PrincipalDetail implements UserDetails {
     private User user;
 
