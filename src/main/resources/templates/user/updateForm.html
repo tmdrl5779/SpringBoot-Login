@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+
+<th:block th:include="/layout/head :: commonHead"></th:block>
+
+<body>
+<div class="Header">
+    <th:block th:include="/layout/header :: commonHeader"></th:block>
+</div>
+
+<div class="container">
+    <form>
+        <input type="hidden" id="id" th:value="${#authentication.principal.user.id}"/>
+        <div class="form-group">
+            <label for="username">Username:</label>
+            <input type="text" class="form-control" placeholder="Enter username" id="username" th:value="${#authentication.principal.user.username}" readonly>
+        </div>
+
+        <th:block th:if="${#authentication.principal.user.oauth == null}">
+            <div class="form-group">
+                <label for="password">Password:</label>
+                <input type="password" class="form-control" placeholder="Enter password" id="password">
+            </div>
+        </th:block>
+    </form>
+    <th:block th:if="${#authentication.principal.user.oauth == null}">
+        <button id="btn-update" class="btn btn-primary">회원 수정</button>
+    </th:block>
+</div>
+
+<script src="/js/user.js"></script>
+<div class="Footer">
+    <th:block th:include="/layout/footer :: commonFooter"></th:block>
+</div>
+</body>
+</html>
+
+

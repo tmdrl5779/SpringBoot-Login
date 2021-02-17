@@ -5,8 +5,12 @@ import Social.Sociallogin.dto.ResponseDto;
 import Social.Sociallogin.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -14,6 +18,7 @@ import org.springframework.web.bind.annotation.RestController;
 public class UserApiController {
 
     private UserService userService;
+
 
     @Autowired
     public UserApiController(UserService userService) {
@@ -25,6 +30,16 @@ public class UserApiController {
         System.out.println("UserApiController : save호출");
         userService.join(user);
         return new ResponseDto<Integer>(HttpStatus.OK.value(), 1);
+    }
+
+    @PutMapping("/user")
+    public ResponseDto<Integer> update(@RequestBody User user){
+        userService.userModify(user);
+        //DB값만 바뀌고 세션값은 바뀌지 않음
+        //세션값을 바꿔줘야함
+
+        return new ResponseDto<Integer>(HttpStatus.OK.value(), 1);
+
     }
 
     ///////////전통적인 로그인인////////////

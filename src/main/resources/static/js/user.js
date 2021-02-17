@@ -4,6 +4,10 @@ let index = {
             this.save();
         });
 
+        $("#btn-update").on("click", ()=>{
+            this.update();
+        });
+
         /*전통 로그인
         $("#btn-login").on("click", ()=>{
             this.login();
@@ -30,6 +34,28 @@ let index = {
         }); //ajax통신으로 데이터를 json으로 변경 후 insert
 
     },
+
+    update: function (){
+        let data ={
+            id:$("#id").val(),
+            username:$("#username").val(),
+            password:$("#password").val()
+        }
+
+        $.ajax({
+            type:"PUT",
+            url:"/user",
+            data:JSON.stringify(data), //object -> json
+            contentType:"application/json; charset=utf-8",
+            dataType:"json"
+        }).done(function (response){
+            alert("회원 수정 완료");
+            location.href = "/";
+        }).fail(function (error){
+            alert("회원 수정 실패");
+        }); //ajax통신으로 데이터를 json으로 변경 후 insert
+
+    }
 
     /*전통 로그인
     login: function (){
