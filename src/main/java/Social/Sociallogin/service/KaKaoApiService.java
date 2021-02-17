@@ -14,7 +14,7 @@ import org.springframework.web.client.RestTemplate;
 @Service
 public class KaKaoApiService {
 
-    @Value("${client_id}")
+    @Value("${client_id}") //프로퍼티에서 가져오기
     private String clientId;
 
     public OAuthToken tokenRequest(String code) {
