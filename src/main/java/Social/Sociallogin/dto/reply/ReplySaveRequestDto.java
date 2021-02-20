@@ -1,4 +1,4 @@
-package Social.Sociallogin.dto;
+package Social.Sociallogin.dto.reply;
 
 import Social.Sociallogin.domain.Reply;
 import lombok.*;

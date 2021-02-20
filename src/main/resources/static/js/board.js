@@ -71,7 +71,7 @@ let index = {
             //location.reload();
 
             var addTag =
-                '<li id="'+ reply.id +'" class="list-group-item d-flex justify-content-between">'+
+                '<li id="reply-'+ reply.id +'" class="list-group-item d-flex justify-content-between">'+
                     '<div>' + reply.content + '</div>'+
                     '<div class="d-flex">'+
                         '<div class="font-italic" >작성자 : '+ reply.user.username+'</div>'+
@@ -80,10 +80,41 @@ let index = {
                 '</li>';
 
 
-            var commentLocation = $('#reply--box').children().first();
-            commentLocation.before(addTag);
+            var commentLocation = $('#reply--box');
+
+            commentLocation.prepend(addTag);
 
             alert("댓글작성 완료");
+
+        }).fail(function (error) {
+            alert(JSON.stringify(error));
+        }); //ajax통신으로 데이터를 json으로 변경 후 insert
+    },
+
+    replyDelete: function (boardId, replyId) {
+        $.ajax({
+            type: "DELETE",
+            url: `/api/board/${boardId}/reply/${replyId}`,
+            dataType: "json"
+        }).done(function (response) {
+            //location.href = `/board/${data.boardId}`;
+            location.reload();
+
+            /*var addTag =
+                '<li id="reply-'+ reply.id +'" class="list-group-item d-flex justify-content-between">'+
+                '<div>' + reply.content + '</div>'+
+                '<div class="d-flex">'+
+                '<div class="font-italic" >작성자 : '+ reply.user.username+'</div>'+
+                '<button class="badge">삭제' +'</button>'+
+                '</div>'+
+                '</li>';*/
+
+
+           /* var commentLocation = $('#reply--box');
+
+            commentLocation.prepend(addTag);
+*/
+            alert("댓글삭제 완료");
 
         }).fail(function (error) {
             alert(JSON.stringify(error));

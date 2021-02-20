@@ -3,8 +3,8 @@ package Social.Sociallogin.service;
 import Social.Sociallogin.domain.Board;
 import Social.Sociallogin.domain.Reply;
 import Social.Sociallogin.domain.User;
-import Social.Sociallogin.dto.ReplyResponseDto;
-import Social.Sociallogin.dto.ReplySaveRequestDto;
+import Social.Sociallogin.dto.reply.ReplyResponseDto;
+import Social.Sociallogin.dto.reply.ReplySaveRequestDto;
 import Social.Sociallogin.repository.BoardRepository;
 import Social.Sociallogin.repository.ReplyRepository;
 import Social.Sociallogin.repository.UserRepository;
@@ -77,5 +77,10 @@ public class BoardService {
         reply.update(user, board, replySaveRequestDto.getContent());
         replyRepository.save(reply);
         return new ReplyResponseDto(reply);
+    }
+
+    @Transactional
+    public void replyRemove(int replyId) {
+        replyRepository.deleteById(replyId);
     }
 }

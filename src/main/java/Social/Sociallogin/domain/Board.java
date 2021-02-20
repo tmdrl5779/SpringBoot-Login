@@ -39,7 +39,7 @@ public class Board {
                        //User의 id를 FK로 함
 
     //기본전략 : LAZY ,필요하면 들고오고 안필요하면 안들고옴
-    @OneToMany(mappedBy = "board", fetch = FetchType.EAGER)// One = Board, Many = Reply , FK가 필요없다
+    @OneToMany(mappedBy = "board", fetch = FetchType.EAGER, cascade = CascadeType.REMOVE)// One = Board, Many = Reply , FK가 필요없다
     @JsonIgnoreProperties({"board"}) //무한참조 방지
     @OrderBy("id desc")
     private List<Reply> replys;    // mappedBy 연관관계의 주인이 아니다 (FK가 아니다, DB에 컬럼을 만들지마라)
