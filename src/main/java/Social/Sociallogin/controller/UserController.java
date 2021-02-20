@@ -75,7 +75,6 @@ public class UserController {
 
         int idx = kakaoProfile.getKakao_account().getEmail().indexOf("@");
         String username = kakaoProfile.getKakao_account().getEmail().substring(0, idx);
-        System.out.println("유저네임:" + username);
 
         User kakaoUser = User.builder()
                 .username(username)

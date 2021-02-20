@@ -2,6 +2,9 @@ package Social.Sociallogin.controller.api;
 
 import Social.Sociallogin.config.auth.PrincipalDetail;
 import Social.Sociallogin.domain.Board;
+import Social.Sociallogin.domain.Reply;
+import Social.Sociallogin.dto.ReplyResponseDto;
+import Social.Sociallogin.dto.ReplySaveRequestDto;
 import Social.Sociallogin.dto.ResponseDto;
 import Social.Sociallogin.service.BoardService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -33,5 +36,13 @@ public class BoardApiController {
         } else {
             throw new Exception();
         }
+    }
+
+
+    @PostMapping("/api/board/{boardId}/reply")
+    public ReplyResponseDto replySave(@RequestBody ReplySaveRequestDto replySaveRequestDto) {
+
+        return boardService.replyWrite(replySaveRequestDto);
+        //return new ResponseDto<Integer>(HttpStatus.OK.value(), 1);
     }
 }

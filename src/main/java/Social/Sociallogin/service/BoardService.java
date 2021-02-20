@@ -1,27 +1,32 @@
 package Social.Sociallogin.service;
 
 import Social.Sociallogin.domain.Board;
+import Social.Sociallogin.domain.Reply;
 import Social.Sociallogin.domain.User;
+import Social.Sociallogin.dto.ReplyResponseDto;
+import Social.Sociallogin.dto.ReplySaveRequestDto;
 import Social.Sociallogin.repository.BoardRepository;
+import Social.Sociallogin.repository.ReplyRepository;
 import Social.Sociallogin.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import org.thymeleaf.standard.expression.EqualsNotEqualsExpression;
 
-import java.util.List;
 import java.util.Optional;
 
 @Service
 public class BoardService {
-    BoardRepository boardRepository;
+    private BoardRepository boardRepository;
+    private ReplyRepository replyRepository;
+    private UserRepository userRepository;
 
     @Autowired
-    public BoardService(BoardRepository boardRepository) {
+    public BoardService(BoardRepository boardRepository, ReplyRepository replyRepository, UserRepository userRepository) {
         this.boardRepository = boardRepository;
+        this.replyRepository = replyRepository;
+        this.userRepository = userRepository;
     }
 
     @Transactional
@@ -57,4 +62,20 @@ public class BoardService {
             return false;
         }
     }
+
+    @Transactional
+    public ReplyResponseDto replyWrite(ReplySaveRequestDto replySaveRequestDto) {
+        Board board = boardRepository.findById(replySaveRequestDto.getBoardId()).orElseThrow(() -> {
+            return new IllegalArgumentException("댓글 쓰기 실패 : 게시글 id를 찾을수 없습니다.");
+        });
+
+        User user = userRepository.findById(replySaveRequestDto.getUserId()).orElseThrow(() -> {
+            return new IllegalArgumentException("댓글 쓰기 실패 : 게시글 id를 찾을수 없습니다.");
+        });
+
+        Reply reply = new Reply();
+        reply.update(user, board, replySaveRequestDto.getContent());
+        replyRepository.save(reply);
+        return new ReplyResponseDto(reply);
     }
+}
