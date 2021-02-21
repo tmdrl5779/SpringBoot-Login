@@ -3,7 +3,10 @@ package Social.Sociallogin.dto.reply;
 import Social.Sociallogin.domain.Board;
 import Social.Sociallogin.domain.Reply;
 import Social.Sociallogin.domain.User;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import org.hibernate.annotations.CreationTimestamp;
 
 import javax.persistence.Column;
@@ -12,6 +15,9 @@ import javax.persistence.ManyToOne;
 import java.sql.Timestamp;
 
 @Getter
+@Builder
+@AllArgsConstructor
+@NoArgsConstructor
 public class ReplyResponseDto {
 
     private int id;
@@ -31,4 +37,6 @@ public class ReplyResponseDto {
         this.user = entity.getUser();
         this.createDate = entity.getCreateDate();
     }
+
+
 }

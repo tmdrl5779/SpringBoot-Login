@@ -12,7 +12,7 @@
 <div class="container">
 
     <button class="btn btn-secondary" onclick="history.back()">돌아가기</button>
-    <span th:if="${#authentication.principal.userDto.id} == ${board.user.id}">
+    <span th:if="${#authentication.principal.userDto.id} == ${board.userDto.id}">
         <button id="btn-delete" class="btn btn-danger">삭제</button>
         <button id="btn-update" class="btn btn-warning">수정</button>
     </span>
@@ -21,7 +21,7 @@
 
     <div>
         글 번호 : <span id="id"><i th:text="${board.id} "></i></span>
-        작성자 : <span><i th:text="${board.user.username} "></i></span>
+        작성자 : <span><i th:text="${board.userDto.username} "></i></span>
     </div>
 
     <br/>

@@ -3,6 +3,7 @@ package Social.Sociallogin.service;
 import Social.Sociallogin.domain.Board;
 import Social.Sociallogin.domain.Reply;
 import Social.Sociallogin.domain.User;
+import Social.Sociallogin.dto.board.BoardDto;
 import Social.Sociallogin.dto.reply.ReplyResponseDto;
 import Social.Sociallogin.dto.reply.ReplySaveRequestDto;
 import Social.Sociallogin.dto.user.UserDto;
@@ -31,11 +32,12 @@ public class BoardService {
     }
 
     @Transactional
-    public void write(Board board, UserDto userDto) { //title, content
-        board.setCount(0);
+    public void write(BoardDto boardDto, UserDto userDto) { //title, content
+        boardDto.init(0, userDto);
+        //board.setCount(0);
         //board.setUser(user);
-        board.setUser(userDto.toEntity());
-        boardRepository.save(board);
+        //board.setUser(userDto.toEntity());
+        boardRepository.save(boardDto.toEntity());
     }
 
     @Transactional(readOnly = true)
@@ -45,11 +47,11 @@ public class BoardService {
     }
 
     @Transactional(readOnly = true)
-    public Board boardDetail(int id) {
-        return boardRepository.findById(id)
+    public BoardDto boardDetail(int id) {
+        return new BoardDto(boardRepository.findById(id)
                 .orElseThrow(() -> {
-                    return new IllegalArgumentException("글 상세보기 실패 : 아이디 찾을 수 었습니다.");
-                });
+                    return new IllegalArgumentException("글 상세보기 실패 : 해당 글을 찾을 수 었습니다.");
+                }));
     }
 
     @Transactional

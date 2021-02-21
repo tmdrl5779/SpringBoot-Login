@@ -2,6 +2,7 @@ package Social.Sociallogin.controller.api;
 
 import Social.Sociallogin.config.auth.PrincipalDetail;
 import Social.Sociallogin.domain.Board;
+import Social.Sociallogin.dto.board.BoardDto;
 import Social.Sociallogin.dto.reply.ReplyResponseDto;
 import Social.Sociallogin.dto.reply.ReplySaveRequestDto;
 import Social.Sociallogin.dto.ResponseDto;
@@ -22,8 +23,8 @@ public class BoardApiController {
     }
 
     @PostMapping("/api/board")
-    public ResponseDto<Integer> save(@RequestBody Board board, @AuthenticationPrincipal PrincipalDetail principal) {
-        boardService.write(board, principal.getUserDto());
+    public ResponseDto<Integer> save(@RequestBody BoardDto boardDto, @AuthenticationPrincipal PrincipalDetail principal) {
+        boardService.write(boardDto, principal.getUserDto());
         //boardService.write(board, principal.getUser);
         return new ResponseDto<Integer>(HttpStatus.OK.value(), 1);
     }
