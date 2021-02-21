@@ -1,6 +1,8 @@
 package Social.Sociallogin.domain;
 
+import Social.Sociallogin.dto.board.BoardDto;
 import Social.Sociallogin.dto.reply.ReplyResponseDto;
+import Social.Sociallogin.dto.user.UserDto;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -44,8 +46,7 @@ public class Reply {
         return ReplyResponseDto.builder()
                 .id(id)
                 .content(content)
-                .board(board)
-                .user(user)
+                .user(new UserDto(user))
                 .createDate(createDate)
                 .build();
     }

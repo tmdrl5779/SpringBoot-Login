@@ -61,7 +61,7 @@
                     <div class="d-flex">
                         <div class="font-italic" th:text="'작성자 : ' + ${reply.user.username} "> &nbsp;</div>
                         <th:block th:if="${#authentication.principal.userDto.id} == ${reply.user.id}">
-                            <button th:onclick="|index.replyDelete(${board.id},${reply.id});|"  class="badge">삭제</button>
+                            <button th:onclick="|index.replyDelete(${board.id},${reply.id})|"  class="badge">삭제</button>
                         </th:block>
                     </div>
                 </li>

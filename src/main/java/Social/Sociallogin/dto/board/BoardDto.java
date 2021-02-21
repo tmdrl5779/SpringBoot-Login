@@ -2,6 +2,7 @@ package Social.Sociallogin.dto.board;
 
 import Social.Sociallogin.domain.Board;
 import Social.Sociallogin.domain.Reply;
+import Social.Sociallogin.dto.ResponseDto;
 import Social.Sociallogin.dto.reply.ReplyResponseDto;
 import Social.Sociallogin.dto.user.UserDto;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -10,6 +11,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 
 import java.sql.Timestamp;
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 import java.util.stream.Collectors;

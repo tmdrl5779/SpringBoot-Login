@@ -75,7 +75,7 @@ public class BoardService {
         });
 
         User user = userRepository.findById(replySaveRequestDto.getUserId()).orElseThrow(() -> {
-            return new IllegalArgumentException("댓글 쓰기 실패 : 게시글 id를 찾을수 없습니다.");
+            return new IllegalArgumentException("댓글 쓰기 실패 : 유저 id를 찾을수 없습니다.");
         });
 
         Reply reply = new Reply();
