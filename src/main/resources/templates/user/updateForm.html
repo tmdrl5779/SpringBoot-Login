@@ -10,20 +10,20 @@
 
 <div class="container">
     <form>
-        <input type="hidden" id="id" th:value="${#authentication.principal.user.id}"/>
+        <input type="hidden" id="id" th:value="${#authentication.principal.userDto.id}"/>
         <div class="form-group">
             <label for="username">Username:</label>
-            <input type="text" class="form-control" placeholder="Enter username" id="username" th:value="${#authentication.principal.user.username}" readonly>
+            <input type="text" class="form-control" placeholder="Enter username" id="username" th:value="${#authentication.principal.userDto.username}" readonly>
         </div>
 
-        <th:block th:if="${#authentication.principal.user.oauth == null}">
+        <th:block th:if="${#authentication.principal.userDto.oauth == null}">
             <div class="form-group">
                 <label for="password">Password:</label>
                 <input type="password" class="form-control" placeholder="Enter password" id="password">
             </div>
         </th:block>
     </form>
-    <th:block th:if="${#authentication.principal.user.oauth == null}">
+    <th:block th:if="${#authentication.principal.userDto.oauth == null}">
         <button id="btn-update" class="btn btn-primary">회원 수정</button>
     </th:block>
 </div>

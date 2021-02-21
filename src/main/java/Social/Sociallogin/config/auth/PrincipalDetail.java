@@ -1,6 +1,7 @@
 package Social.Sociallogin.config.auth;
 
 import Social.Sociallogin.domain.User;
+import Social.Sociallogin.dto.user.UserDto;
 import lombok.Getter;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -13,20 +14,25 @@ import java.util.Collection;
 //스프링 시큐리티의 고유한 세션저장소에 저장을 해준다. PrincipalDetail
 @Getter
 public class PrincipalDetail implements UserDetails {
-    private User user;
+    //private User user;
+    private UserDto userDto;
 
-    public PrincipalDetail(User user) {
+   /* public PrincipalDetail(User user) {
         this.user = user;
+    }*/
+
+    public PrincipalDetail(UserDto userDto) {
+        this.userDto = userDto;
     }
 
     @Override
     public String getPassword() {
-        return user.getPassword();
+        return userDto.getPassword();
     }
 
     @Override
     public String getUsername() {
-        return user.getUsername();
+        return userDto.getUsername();
     }
 
     //계정이 만료되지 않았는지 리턴 (true: 만료안됨)

@@ -23,13 +23,15 @@ public class BoardApiController {
 
     @PostMapping("/api/board")
     public ResponseDto<Integer> save(@RequestBody Board board, @AuthenticationPrincipal PrincipalDetail principal) {
-        boardService.write(board, principal.getUser());
+        boardService.write(board, principal.getUserDto());
+        //boardService.write(board, principal.getUser);
         return new ResponseDto<Integer>(HttpStatus.OK.value(), 1);
     }
 
     @DeleteMapping("/api/board/{id}")
     public ResponseDto<Integer> deleteById(@PathVariable int id, @AuthenticationPrincipal PrincipalDetail principal) throws Exception {
-        if (boardService.delete(id, principal.getUser())) {
+        if (boardService.delete(id, principal.getUserDto())) {
+        //if (boardService.delete(id, principal.getUser())) {
             return new ResponseDto<Integer>(HttpStatus.OK.value(), 1);
         } else {
             throw new Exception();

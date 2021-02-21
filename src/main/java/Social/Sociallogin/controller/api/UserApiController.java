@@ -2,6 +2,7 @@ package Social.Sociallogin.controller.api;
 
 import Social.Sociallogin.domain.User;
 import Social.Sociallogin.dto.ResponseDto;
+import Social.Sociallogin.dto.user.UserDto;
 import Social.Sociallogin.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -26,15 +27,15 @@ public class UserApiController {
     }
 
     @PostMapping("/auth/joinProc")
-    public ResponseDto<Integer> save(@RequestBody User user){
+    public ResponseDto<Integer> save(@RequestBody UserDto userDto){
         System.out.println("UserApiController : save호출");
-        userService.join(user);
+        userService.join(userDto);
         return new ResponseDto<Integer>(HttpStatus.OK.value(), 1);
     }
 
     @PutMapping("/user")
-    public ResponseDto<Integer> update(@RequestBody User user){
-        userService.userModify(user);
+    public ResponseDto<Integer> update(@RequestBody UserDto userDto){
+        userService.userModify(userDto);
         //DB값만 바뀌고 세션값은 바뀌지 않음
         //세션값을 바꿔줘야함
 

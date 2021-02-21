@@ -4,6 +4,7 @@ import Social.Sociallogin.config.auth.PrincipalDetail;
 import Social.Sociallogin.domain.User;
 import Social.Sociallogin.dto.KakaoProfile;
 import Social.Sociallogin.dto.OAuthToken;
+import Social.Sociallogin.dto.user.UserDto;
 import Social.Sociallogin.service.KaKaoApiService;
 import Social.Sociallogin.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -76,7 +77,8 @@ public class UserController {
         int idx = kakaoProfile.getKakao_account().getEmail().indexOf("@");
         String username = kakaoProfile.getKakao_account().getEmail().substring(0, idx);
 
-        User kakaoUser = User.builder()
+        //User kakaoUser
+        UserDto kakaoUser = UserDto.builder()  //kakao정보 userdto에 담기
                 .username(username)
                 .password(kakaoProfile.getKakao_account().getEmail() + kakaoProfile.getId())
                 .oauth("kakao")

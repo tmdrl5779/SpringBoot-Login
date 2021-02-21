@@ -5,6 +5,7 @@ import Social.Sociallogin.domain.Reply;
 import Social.Sociallogin.domain.User;
 import Social.Sociallogin.dto.reply.ReplyResponseDto;
 import Social.Sociallogin.dto.reply.ReplySaveRequestDto;
+import Social.Sociallogin.dto.user.UserDto;
 import Social.Sociallogin.repository.BoardRepository;
 import Social.Sociallogin.repository.ReplyRepository;
 import Social.Sociallogin.repository.UserRepository;
@@ -30,9 +31,10 @@ public class BoardService {
     }
 
     @Transactional
-    public void write(Board board, User user) { //title, content
+    public void write(Board board, UserDto userDto) { //title, content
         board.setCount(0);
-        board.setUser(user);
+        //board.setUser(user);
+        board.setUser(userDto.toEntity());
         boardRepository.save(board);
     }
 
@@ -51,11 +53,12 @@ public class BoardService {
     }
 
     @Transactional
-    public Boolean delete(int id, User user) {
+    public Boolean delete(int id, UserDto userDto) {
 
         Optional<Board> board = boardRepository.findById(id);
 
-        if (board.get().getUser().getUsername().equals(user.getUsername())) {
+        if (board.get().getUser().getUsername().equals(userDto.getUsername())) {
+        //if (board.get().getUser().getUsername().equals(user.getUsername())) {
             boardRepository.deleteById(id);
             return true;
         }else{

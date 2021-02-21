@@ -58,8 +58,6 @@ let index = {
             content:$("#reply-content").val()
         }
 
-        //console.log(data);
-
         $.ajax({
             type: "POST",
             url: `/api/board/${data.boardId}/reply`,
@@ -80,7 +78,7 @@ let index = {
                 '</li>';
 
 
-            var commentLocation = $('#reply--box');
+            var commentLocation = $('#reply-box');
 
             commentLocation.prepend(addTag);
 
@@ -100,25 +98,11 @@ let index = {
             //location.href = `/board/${data.boardId}`;
             location.reload();
 
-            /*var addTag =
-                '<li id="reply-'+ reply.id +'" class="list-group-item d-flex justify-content-between">'+
-                '<div>' + reply.content + '</div>'+
-                '<div class="d-flex">'+
-                '<div class="font-italic" >작성자 : '+ reply.user.username+'</div>'+
-                '<button class="badge">삭제' +'</button>'+
-                '</div>'+
-                '</li>';*/
-
-
-           /* var commentLocation = $('#reply--box');
-
-            commentLocation.prepend(addTag);
-*/
             alert("댓글삭제 완료");
 
         }).fail(function (error) {
             alert(JSON.stringify(error));
-        }); //ajax통신으로 데이터를 json으로 변경 후 insert
+        });
     }
 
 }

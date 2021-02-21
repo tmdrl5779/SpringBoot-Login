@@ -1,6 +1,7 @@
 package Social.Sociallogin.config.auth;
 
 import Social.Sociallogin.domain.User;
+import Social.Sociallogin.dto.user.UserDto;
 import Social.Sociallogin.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -27,6 +28,7 @@ public class PrincipalDetailService implements UserDetailsService {
                 .orElseThrow(() ->{
                     return new UsernameNotFoundException("해당 사용자를 찾을수 없습니다.:" + username);
                 });
-        return new PrincipalDetail(principal); //시큐리티의 세션에 유저정보가 저장이됨.
+        //return new PrincipalDetail(principal);
+        return new PrincipalDetail(new UserDto(principal)); //시큐리티의 세션에 유저정보가 저장이됨.
     }
 }
