@@ -45,6 +45,7 @@ public class Reply {
     public ReplyResponseDto toDto(){
         return ReplyResponseDto.builder()
                 .id(id)
+                .boardId(board.getId())
                 .content(content)
                 .user(new UserDto(user))
                 .createDate(createDate)

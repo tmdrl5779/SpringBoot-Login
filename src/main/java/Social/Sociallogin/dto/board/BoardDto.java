@@ -63,5 +63,4 @@ public class BoardDto {
                 .collect(Collectors.toList());
     }
 
-
 }

@@ -19,14 +19,17 @@ public class ReplyResponseDto {
 
     private int id;
 
+    private int boardId;
+
     private String content;
 
     private UserDto user;
 
     private Timestamp createDate;
 
-    public ReplyResponseDto(Reply entity) {
+    public ReplyResponseDto(Reply entity, int boardId) {
         this.id = entity.getId();
+        this.boardId = boardId;
         this.content = entity.getContent();
         this.user = new UserDto(entity.getUser());
         this.createDate = entity.getCreateDate();

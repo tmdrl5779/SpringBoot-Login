@@ -81,7 +81,7 @@ public class BoardService {
         Reply reply = new Reply();
         reply.update(user, board, replySaveRequestDto.getContent());
         replyRepository.save(reply);
-        return new ReplyResponseDto(reply);
+        return new ReplyResponseDto(reply, board.getId());
     }
 
     @Transactional
