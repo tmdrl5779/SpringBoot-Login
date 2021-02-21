@@ -20,7 +20,7 @@
             <input type="password" class="form-control" name="password" placeholder="Enter password" id="password">
         </div>
         <button id="btn-login" class="btn btn-primary">로그인</button>
-        <a href="https://kauth.kakao.com/oauth/authorize?client_id=5ba41acefe4f04ad80e8033afd50e18c&redirect_uri=http://localhost:8080/auth/kakao/callback&response_type=code"><img height="38px" src="/image/kakao_login_button.png"></a>
+        <a th:href="'https://kauth.kakao.com/oauth/authorize?client_id='+${@environment.getProperty('client_id')}+'&redirect_uri=http://localhost:8080/auth/kakao/callback&response_type=code'"><img height="38px" src="/image/kakao_login_button.png"></a>
     </form>
     <!--전통 로그인
     <button id="btn-login" class="btn btn-primary">로그인</button>-->
